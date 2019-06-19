@@ -17,7 +17,6 @@ class USAUserMapping: NSEntityMigrationPolicy {
       let userSex = sInstance.primitiveValue(forKey: "userSex") as! String
       let userCity = sInstance.primitiveValue(forKey: "userCity") as! String
       let userCountry = sInstance.primitiveValue(forKey: "userCountry") as! String
-      
       if userCountry == "USA" {
         let usaUser = NSEntityDescription.insertNewObject(forEntityName: "USAUser", into: manager.destinationContext)
         usaUser.setValue(userName, forKey: "userName")

@@ -18,10 +18,10 @@ class CoreDataManager {
       if let error = error as NSError? {
         fatalError("Unable to load store: \(error), \(error.userInfo)")
       } else {
-//        let description = NSPersistentStoreDescription()
-//        description.shouldMigrateStoreAutomatically = false
-//        description.shouldInferMappingModelAutomatically = true
-//        container.persistentStoreDescriptions = [description]
+        let description = NSPersistentStoreDescription()
+        description.shouldMigrateStoreAutomatically = false
+        description.shouldInferMappingModelAutomatically = true
+        container.persistentStoreDescriptions = [description]
       }
     })
     return container

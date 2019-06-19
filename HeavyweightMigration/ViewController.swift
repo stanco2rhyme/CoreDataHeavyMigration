@@ -22,35 +22,35 @@ class ViewController: UIViewController {
     userTableView.rowHeight = 130
     managedObjectContext = CoreDataManager.sharedManager.persistentContainer.viewContext
     
-    createUser(name: "Sarah", sex: "Female", age: 37, country: "England")
-    createUser(name: "Peter", sex: "Male", age: 21, country: "USA")
-    createUser(name: "Hannah", sex: "Female", age: 23, country: "England")
-    createUser(name: "John", sex: "Male", age: 26, country: "USA")
+//    createUser(name: "Sarah", sex: "Female", age: 37, country: "England")
+//    createUser(name: "Peter", sex: "Male", age: 21, country: "USA")
+//    createUser(name: "Hannah", sex: "Female", age: 23, country: "England")
+//    createUser(name: "John", sex: "Male", age: 26, country: "USA")
   }
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    fetchAllUsers()
-    //    loadUSAUser()
+//    fetchAllUsers()
+        loadUSAUser()
   }
   
-  func createUser(name: String, sex: String, age: Int16, country: String) {
-    let managedObjectContext = CoreDataManager.sharedManager.persistentContainer.viewContext
-    guard let storeEntity = NSEntityDescription.entity(forEntityName: "InternationalUser", in: managedObjectContext) else { return }
-    let internationalUser = NSManagedObject(entity: storeEntity, insertInto: managedObjectContext)
-    internationalUser.setValue(name, forKeyPath: "userName")
-    internationalUser.setValue(sex, forKeyPath: "userSex")
-    internationalUser.setValue(country, forKeyPath: "userCountry")
-    let ageInt16 = Int16(age)
-    internationalUser.setValue(ageInt16, forKeyPath: "userAge")
-    do {
-      try managedObjectContext.save()
-      user.append(internationalUser)
-    } catch {
-      let error = error as NSError?
-      fatalError("Unable to save \(error), \(error?.userInfo)")
-    }
-  }
+//  func createUser(name: String, sex: String, age: Int16, country: String) {
+//    let managedObjectContext = CoreDataManager.sharedManager.persistentContainer.viewContext
+//    guard let storeEntity = NSEntityDescription.entity(forEntityName: "InternationalUser", in: managedObjectContext) else { return }
+//    let internationalUser = NSManagedObject(entity: storeEntity, insertInto: managedObjectContext)
+//    internationalUser.setValue(name, forKeyPath: "userName")
+//    internationalUser.setValue(sex, forKeyPath: "userSex")
+//    internationalUser.setValue(country, forKeyPath: "userCountry")
+//    let ageInt16 = Int16(age)
+//    internationalUser.setValue(ageInt16, forKeyPath: "userAge")
+//    do {
+//      try managedObjectContext.save()
+//      user.append(internationalUser)
+//    } catch {
+//      let error = error as NSError?
+//      fatalError("Unable to save \(error), \(error?.userInfo)")
+//    }
+//  }
   
   @objc func loadUSAUser()
   {
@@ -107,18 +107,18 @@ class ViewController: UIViewController {
   }
   
   
-  func fetchAllUsers() -> [InternationalUser]? {
-    let managedContext = CoreDataManager.sharedManager.persistentContainer.viewContext
-    //    let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "InternationalUser")
-    let fetchRequest: NSFetchRequest<InternationalUser> = InternationalUser.fetchRequest()
-    do {
-      let users = try managedContext.fetch(fetchRequest)
-      return users as? [InternationalUser]
-    } catch let error as NSError {
-      print("Could not fetch. \(error), \(error.userInfo)")
-      return nil
-    }
-  }
+//  func fetchAllUsers() -> [InternationalUser]? {
+//    let managedContext = CoreDataManager.sharedManager.persistentContainer.viewContext
+//    //    let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "InternationalUser")
+//    let fetchRequest: NSFetchRequest<InternationalUser> = InternationalUser.fetchRequest()
+//    do {
+//      let users = try managedContext.fetch(fetchRequest)
+//      return users as? [InternationalUser]
+//    } catch let error as NSError {
+//      print("Could not fetch. \(error), \(error.userInfo)")
+//      return nil
+//    }
+//  }
   
   
 }
@@ -126,30 +126,30 @@ class ViewController: UIViewController {
 extension ViewController: UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    //    return dataSource.count
-    return user.count
+        return dataSource.count
+//    return user.count
     
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! InternationalUsersTableViewCell
-    //    cell.name.text = dataSource[indexPath.row].userName
-    //    let age = dataSource[indexPath.row].userAge
-    //    let ageString = String(age)
-    //    cell.age.text = ageString
-    //    cell.sex.text = dataSource[indexPath.row].userSex
-    //    cell.country.text = dataSource[indexPath.row].userCity
-    //    countryFlags.append(dataSource[indexPath.row].userCountry)
-    //    cell.imageView?.image = UIImage(named: countryFlags[indexPath.row])
+        cell.name.text = dataSource[indexPath.row].userName
+        let age = dataSource[indexPath.row].userAge
+        let ageString = String(age)
+        cell.age.text = ageString
+        cell.sex.text = dataSource[indexPath.row].userSex
+        cell.country.text = dataSource[indexPath.row].userCity
+        countryFlags.append(dataSource[indexPath.row].userCountry)
+        cell.imageView?.image = UIImage(named: countryFlags[indexPath.row])
     
     
-    cell.name.text = user[indexPath.row].value(forKeyPath: "userName") as? String
-    let age = user[indexPath.row].value(forKeyPath: "userAge") as! Int16 ?? 0
-    let stringAge = String(age)
-    cell.age.text = stringAge
-    cell.sex.text = user[indexPath.row].value(forKeyPath: "userSex") as? String
-    
-    cell.country.text = user[indexPath.row].value(forKeyPath: "userCountry") as? String
+//    cell.name.text = user[indexPath.row].value(forKeyPath: "userName") as? String
+//    let age = user[indexPath.row].value(forKeyPath: "userAge") as! Int16 ?? 0
+//    let stringAge = String(age)
+//    cell.age.text = stringAge
+//    cell.sex.text = user[indexPath.row].value(forKeyPath: "userSex") as? String
+//
+//    cell.country.text = user[indexPath.row].value(forKeyPath: "userCountry") as? String
     
     return cell
   }
