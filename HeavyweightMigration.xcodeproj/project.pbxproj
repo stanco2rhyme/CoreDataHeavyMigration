@@ -381,7 +381,7 @@
 				EA130A0D22B989C70087FAEF /* HeavyweightMigration2.xcdatamodel */,
 				EA1309F722B967B70087FAEF /* HeavyweightMigration.xcdatamodel */,
 			);
-			currentVersion = EA130A0D22B989C70087FAEF /* HeavyweightMigration2.xcdatamodel */;
+			currentVersion = EA1309F722B967B70087FAEF /* HeavyweightMigration.xcdatamodel */;
 			path = HeavyweightMigration.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

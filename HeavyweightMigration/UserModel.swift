@@ -7,8 +7,9 @@
 //
 
 import Foundation
+import CoreData
 
-class UserModel {
+class UserModel: NSManagedObject {
   var userName = String()
   var userAge = Int()
   var userSex = String()
