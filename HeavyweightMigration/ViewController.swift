@@ -59,7 +59,6 @@ class ViewController: UIViewController {
     navigationItem.rightBarButtonItem = UIBarButtonItem(title: "England", style: .plain, target: self, action: #selector(loadEnglandUser))
     //    let request = NSFetchRequest<NSFetchRequestResult>(entityName: "USAUser")
     let request = NSFetchRequest<NSManagedObject>(entityName: "USAUser")
-    
     request.returnsObjectsAsFaults = false
     do {
       let result = try self.managedObjectContext?.fetch(request)
@@ -75,7 +74,6 @@ class ViewController: UIViewController {
         print(data)
       }
     } catch {
-      
       print("Failed")
     }
     userTableView.reloadData()
